@@ -30,5 +30,7 @@
 
   imports = [
     ./config_files/git.nix
+    ./config_files/gpg/gpg.nix
+    ./config_files/gpg/gpg-agent.nix
   ];
 }
