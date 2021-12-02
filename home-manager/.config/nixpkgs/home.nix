@@ -21,5 +21,14 @@
 
   #programs.fish.enable = true;
   programs.emacs.enable = true;
-  programs.git.enable = true;
+
+  home.packages = [
+    pkgs.tmux
+    pkgs.stow
+    #pkgs._1password-gui
+  ];
+
+  imports = [
+    ./config_files/git.nix
+  ];
 }
