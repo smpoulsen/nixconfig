@@ -1,0 +1,5 @@
+--dir=$HOME/nixconfig
+--target=/etc/nixos/users
+--ignore='result'
+--ignore='*.swp'
+--ignore='dot-*'

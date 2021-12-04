@@ -14,23 +14,24 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.11";
+  home.stateVersion = "21.05";
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  # programs.home-manager.enable = true;
 
-  #programs.fish.enable = true;
+  programs.fish.enable = true;
   programs.emacs.enable = true;
 
   home.packages = [
     pkgs.tmux
     pkgs.stow
-    #pkgs._1password-gui
+    pkgs.nox
+    pkgs._1password-gui
   ];
 
   imports = [
-    ./config_files/git.nix
-    ./config_files/gpg/gpg.nix
-    ./config_files/gpg/gpg-agent.nix
+    ./dotfiles/git.nix
+    ./dotfiles/gpg/gpg.nix
+    ./dotfiles/gpg/gpg-agent.nix
   ];
 }
