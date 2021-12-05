@@ -40,6 +40,7 @@ in {
 
         # Modes
         "${mod}+Shift+p" = "mode power-mgmt";
+        "${mod}+Shift+n" = "mode nixos";
 
         # Move
         "${mod}+Shift+j" = "move left";
@@ -62,6 +63,12 @@ in {
           "${mod}+p" = "exec systemctl shutdown";
           "${mod}+r" = "exec systemctl reboot";
           "${mod}+s" = "exec systemctl suspend";
+          Return = "mode default";
+          Escape = "mode default";
+        };
+
+        nixos = {
+          "${mod}+s" = "exec alacritty --hold --command 'sudo nixos-rebuild switch'";
           Return = "mode default";
           Escape = "mode default";
         };

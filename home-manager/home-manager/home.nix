@@ -44,12 +44,16 @@
     tmux
 
     # Desktop
+    feh
 
     # Fonts
     cascadia-code
 
     # Sys tools
     exa
+    fd
+    fish
+    fzf
     htop
     ripgrep
     stow

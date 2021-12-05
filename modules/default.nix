@@ -1,9 +1,11 @@
 { ... }: {
   imports = [
-    ./polybar
     ./alacritty
+    #./emacs
     ./git
     ./gpg
+    ./polybar
+    ./tmux
     ./vim
   ];
 }
