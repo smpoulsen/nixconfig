@@ -1,4 +1,7 @@
 { pkgs, ...}: {
+  imports = [
+    ./gpg-agent.nix
+  ];
   programs.gpg = {
     enable = true;
     settings = {
