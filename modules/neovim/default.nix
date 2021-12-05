@@ -1,22 +1,6 @@
 { pkgs, ... }: {
-  programs.vim = {
+  programs.neovim = {
     enable = true;
-    settings = {
-      # Line numbers.
-      number = true;
-
-      # modeline = true;
-
-      # Convert tabs to spaces.
-      tabstop = 2;
-      shiftwidth = 2;
-      expandtab = true;
-
-      mouse = "a";
-
-      smartcase = true;
-      ignorecase = true;
-    };
 
     plugins = with pkgs.vimPlugins; [
       vim-airline
@@ -28,6 +12,21 @@
 
     extraConfig = ''
       set encoding=utf-8 
+
+      "Line numbers.
+      set number
+
+      "modeline = true
+
+      "Convert tabs to spaces.
+      set tabstop=2
+      set shiftwidth=2
+      set expandtab
+
+      set mouse="a"
+
+      set smartcase
+      set ignorecase
 
       "Colorscheme.
       colorscheme nord
@@ -75,4 +74,3 @@
     '';
   };
 }
-

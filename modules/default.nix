@@ -4,8 +4,8 @@
     #./emacs
     ./git
     ./gpg
+    ./neovim
     ./polybar
     ./tmux
-    ./vim
   ];
 }

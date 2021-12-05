@@ -31,18 +31,18 @@
     bind r source-file ~/.tmux.conf
 
     ##### STATUS LINE #####
-    set-window-option -g status-left " #S "
-    #set-window-option -g status-left-fg black
-    #set-window-option -g status-left-bg "#B48EAD"
+    # set-window-option -g status-left " #S "
+    # set-window-option -g status-left-fg black
+    # set-window-option -g status-left-bg "#B48EAD"
 
     set -g status-right-length 150
-    set-window-option -g status-right " #S #I:#P | continuum: #{continuum_status} | %H:%M | %d-%b-%y "
-    #set-window-option -g status-right-fg black
-    #set-window-option -g status-right-bg white
+    # set-window-option -g status-right " #S #I:#P | continuum: #{continuum_status} | %H:%M | %d-%b-%y "
+    # set-window-option -g status-right-fg black
+    # set-window-option -g status-right-bg white
 
     set-window-option -g window-status-format " #I: #W "
-
     set-window-option -g window-status-current-format " #I: #W "
+
     #set-window-option -g window-status-current-fg "#b48ead"
     #set-window-option -g window-status-current-bg black
 
@@ -51,7 +51,7 @@
     # List of plugins
 
     # Show continuum status in status bar
-    set -g status-right 'Continuum status: #{continuum_status}'
+    # set -g status-right 'Continuum status: #{continuum_status}'
   '';
 in {
   programs.tmux = {
