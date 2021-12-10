@@ -31,7 +31,6 @@
   # programs.home-manager.enable = true;
 
   programs.fish.enable = true;
-  programs.emacs.enable = true;
   programs.feh.enable = true;
 
   home.packages = with pkgs; [
@@ -54,6 +53,7 @@
     fd
     fish
     fzf
+    gnumake
     htop
     ripgrep
     stow

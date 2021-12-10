@@ -1,0 +1,6 @@
+--dir=/home/sylvie/nixconfig/stow
+--target=/home/sylvie
+--dotfiles
+--ignore='result'
+--ignore='*.swp'
+--ignore='dot-*'

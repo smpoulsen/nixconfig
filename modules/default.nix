@@ -1,11 +1,12 @@
 { ... }: {
   imports = [
     ./alacritty
-    #./emacs
+    ./emacs
     ./git
     ./gpg
     ./neovim
     ./polybar
     ./tmux
+    ./vim
   ];
 }

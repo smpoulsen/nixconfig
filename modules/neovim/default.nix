@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   programs.neovim = {
     enable = true;
+    viAlias = false;
+    vimAlias = true;
 
     plugins = with pkgs.vimPlugins; [
       vim-airline
