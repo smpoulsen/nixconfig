@@ -17,6 +17,7 @@
       # Define on which hard drive you want to install Grub.
       device = "nodev"; # or "nodev" for efi only
       enableCryptodisk = true;
+      useOSProber = true;
     };
     efi = {
       # canTouchEfiVariables = true;
