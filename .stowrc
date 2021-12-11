@@ -1,5 +1,5 @@
---dir=/home/sylvie/nixconfig
---target=/etc/nixos/users
+--dir=/persist/nixconfig
+--target=/etc/nixos/
 --dotfiles
 --ignore='result'
 --ignore='*.swp'

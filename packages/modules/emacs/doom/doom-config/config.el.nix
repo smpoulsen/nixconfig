@@ -8,15 +8,20 @@
    #      :desc "Search journal entry" "s" #'org-journal-search)))
    keybindings = ''
    (map! :leader
-      (:desc "Command" "SPC" #'counsel-M-x)
-      (:desc "Find file in current project" ":" #'projectile-find-file)
 
+      ;; SPC-SPC to open M-x
+      :desc "Command" "SPC" #'counsel-M-x
+      ;; SPC-: to find a file in the current project
+      :desc "Find file in current project" ":" #'projectile-find-file
+
+      ;; SPC-p-v to open magit
       (:prefix ("p" . "project")
-        :desc "magit" "v" #'magit))
+        :desc "magit" "v" #'magit)
 
+      ;; Change window split keybindings
       (:prefix ("w" . "window")
         :desc "Vertical split" "/" #'evil-window-vsplit
-        :desc "Horizontal split" "-" #'evil-window-split)
+        :desc "Horizontal split" "-" #'evil-window-split
         :desc "Decrease window height" "C--" #'evil-window-decrease-height))
    '';
 
