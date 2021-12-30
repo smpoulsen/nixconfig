@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./modules
-    ./services
+    ./sylvie/macos
   ];
+
 }

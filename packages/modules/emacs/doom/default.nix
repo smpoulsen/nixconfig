@@ -1,4 +1,4 @@
-{ pkgs, config, lib, options, ... }: 
+{ pkgs, config, lib, options, ... }:
   let
     doomConfig = (import ./doom-config { inherit options; });
     privateConfig = (import ./private { inherit options; });
@@ -87,5 +87,5 @@
         # :lang rust
         rustfmt
         # unstable.rust-analyzer
-        ];  
+        ];
 }

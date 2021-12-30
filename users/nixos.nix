@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./sylvie
+    ./sylvie/nixos
   ];
-
 }
