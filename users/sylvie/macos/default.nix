@@ -8,10 +8,14 @@
       ../../../packages/macos.nix
     ];
 
+    fonts.fontconfig.enable = false;
+
     home = {
       # Env Vars
+      homeDirectory = /Users/sylvie;
       sessionVariables = {
         TERMINAL = "iTerm2";
+        _DARWIN_CONFIG = "$HOME/code/nixconfig/machines/macos/rhodenite/darwin-configuration.nix";
       };
     };
 

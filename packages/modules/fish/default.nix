@@ -24,9 +24,34 @@ in {
           sha256 = "RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
         };
       }
+      {
+        name = "fenv";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "plugin-foreign-env";
+          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+          sha256 = "er1KI2xSUtTlQd9jZl1AjqeArrfBxrgBLcw5OqinuAM=";
+        };
+      }
     ];
 
     functions = {
+      darwin-reload = ''
+        darwin-rebuild switch -I darwin-config=$_DARWIN_CONFIG
+      '';
+
+      load_nix = ''
+        # Don't execute this file when running in a pure nix-shell.
+        if test "$IN_NIX_SHELL"
+           or test ! -e "$_DARWIN_CONFIG"
+           return
+        end
+
+        if test ! -e "$__NIX_DARWIN_SET_ENVIRONMENT_DONE"
+          fenv source /nix/store/6nzvy4gzmqblacm0h6yci4nk9b139gkr-set-environment > /dev/null
+        end
+      '';
+
       cachix_push = ''
         nix flake archive --json \
         | jq -r '.path,(.inputs|to_entries[].value.path)' \

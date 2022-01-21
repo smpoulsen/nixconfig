@@ -9,7 +9,14 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
+    verbose = true;
   };
+
+  # Direnv
+    nix.extraOptions = ''
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

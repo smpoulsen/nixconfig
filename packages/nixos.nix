@@ -4,6 +4,7 @@
   imports = [
     ./common.nix
     # Modules
+    modules/emacs
     modules/alacritty
     modules/gpg
     modules/polybar

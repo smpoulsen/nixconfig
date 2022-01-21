@@ -34,4 +34,9 @@ set -x GPG_TTY (tty)
 set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
+if functions -q load_nix
+    load_nix
+end
+
+direnv hook fish | source
 # set -g fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths

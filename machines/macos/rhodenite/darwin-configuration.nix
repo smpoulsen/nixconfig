@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -11,10 +11,13 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      pkgs.openvpn
     ];
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnsupportedSystem = true;
+  nix.useDaemon = true;
+  services.nix-daemon.enable = true;
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
