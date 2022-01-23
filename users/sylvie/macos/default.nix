@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
-    ../common.nix
+    ../common
   ];
 
   home-manager.users.sylvie = { config, pkgs, ... }: {

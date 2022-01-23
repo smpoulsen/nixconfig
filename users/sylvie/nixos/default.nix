@@ -1,10 +1,12 @@
 { config, lib, pkgs, ... }: {
   imports = [
-    ../common.nix
+    ../common
   ];
   users.users.sylvie = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel"
+                    "docker"
+                  ];
   };
 
   security.sudo.extraRules = [
@@ -43,6 +45,8 @@
 
       # Sys tools
       gnumake
+      yubikey-manager
+      zlib
     ];
   };
 }

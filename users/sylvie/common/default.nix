@@ -22,10 +22,21 @@
     # Let Home Manager install and manage itself.
     # programs.home-manager.enable = true;
 
-    programs.direnv.enable = true;
-    programs.direnv.nix-direnv.enable = true;
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+
 
     programs.fish.enable = true;
+
+    home.file = {
+      qmk = {
+        source = config/qmk;
+        recursive = true;
+        target = ".config/qmk";
+      };
+    };
 
     home.packages = with pkgs; [
       # Apps

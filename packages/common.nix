@@ -3,7 +3,7 @@
 {
   imports = [
     # Modules
-    #modules/emacs
+    modules/emacs
     modules/git
     modules/neovim
     modules/tmux

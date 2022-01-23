@@ -1,0 +1,6 @@
+#+TITLE: README
+#+AUTHOR: Sylvie Poulsen
+#+DATE: 2021
+
+* About
+Personal Nix(OS) configuration.

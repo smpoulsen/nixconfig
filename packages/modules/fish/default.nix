@@ -5,6 +5,11 @@ let
 in {
   programs.fish = {
     shellInit = fish_config;
+
+    loginShellInit = ''
+      eval (direnv hook fish)
+    '';
+
     plugins = [
       {
         name = "pure";

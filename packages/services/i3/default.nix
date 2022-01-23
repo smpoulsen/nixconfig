@@ -21,7 +21,9 @@ in {
       # List definition is deprecated, but I
       # can't find what the expected attrset
       # looks like anywhere.
-      fonts = ["Cascadia Code"];
+      fonts = {
+        names = ["Cascadia Code"];
+      };
 
       keybindings = lib.mkOptionDefault {
         "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
@@ -63,6 +65,7 @@ in {
           "${mod}+p" = "exec systemctl shutdown";
           "${mod}+r" = "exec systemctl reboot";
           "${mod}+s" = "exec systemctl suspend";
+          "${mod}+l" = "loginctl terminate-session $XDG_SESSION_ID";
           Return = "mode default";
           Escape = "mode default";
         };

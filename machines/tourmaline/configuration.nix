@@ -3,7 +3,7 @@
 {
   imports = [
     (import <home-manager/nixos>)
-    /persist/nixconfig/users
+    /persist/nixconfig/users/nixos.nix
   ];
 
   # Use the GRUB 2 boot loader.
@@ -13,18 +13,19 @@
       version = 2;
       efiSupport = true;
       efiInstallAsRemovable = true;
-      # boot.loader.efi.efiSysMountPoint = "/boot/efi";
-      # Define on which hard drive you want to install Grub.
-      device = "nodev"; # or "nodev" for efi only
+      device = "nodev"; # "nodev" for efi only
       enableCryptodisk = true;
       useOSProber = true;
-    };
-    efi = {
-      # canTouchEfiVariables = true;
     };
     systemd-boot.enable = true;
     generationsDir.copyKernels = true;
   };
+
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+    keep-outputs = true
+    keep-derivations = true
+  '';
 
   networking.hostName = "tourmaline"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -37,11 +38,6 @@
   # replicates the default behaviour.
   networking.useDHCP = false;
   networking.interfaces.enp0s31f6.useDHCP = true;
-  # networking.interfaces.wlp0s20f0u10.useDHCP = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -60,14 +56,6 @@
     enable = true;
     displayManager.lightdm.enable = true;
     windowManager.i3.enable = true;
-#    desktopManager = {
-#      xterm.enable = false;
-#      xfce = {
-#        enable = true;
-#        noDesktop = true;
-#        enableXfwm = false;
-#      };
-#    };
   };
 
   # Configure keymap in X11
@@ -104,6 +92,15 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  #
+  # Enable pcscd for yubikey
+  services.pcscd.enable = true;
+
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+    autoPrune.enable = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
