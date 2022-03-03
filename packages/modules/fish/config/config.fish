@@ -30,13 +30,16 @@ set -xg TZ "America/New_York"
 set -xg iCloudDrive "~/Library/Mobile\ Documents/com\~apple\~CloudDocs/"
 
 # Enable gpg auth for ssh
-set -x GPG_TTY (tty)
-set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
+#set -x GPG_TTY (tty)
+#set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+#gpgconf --launch gpg-agent
 
 if functions -q load_nix
     load_nix
 end
 
-direnv hook fish | source
+# direnv hook fish | source
 # set -g fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
+
+fenv source /run/current-system/etc/zshenv > /dev/null
+fish_add_path -p /nix/var/nix/profiles/per-user/sylvie/home-manager/home-path/bin /run/current-system/sw/bin

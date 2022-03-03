@@ -21,7 +21,7 @@
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  environment.darwinConfig = "$HOME/code/nixconfig/machines/macos/rhodenite/darwin-configuration.nix";
+  environment.darwinConfig = "$HOME/code/nixconfig/machines/macos/sylvie-mbp/darwin-configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;

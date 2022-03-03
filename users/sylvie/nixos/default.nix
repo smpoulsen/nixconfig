@@ -4,7 +4,9 @@
   ];
   users.users.sylvie = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel"
+                    "docker"
+                  ];
   };
 
   security.sudo.extraRules = [

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
 
   users.users.sylvie = {
-    shell = pkgs.fish;
+    # shell = pkgs.fish;
   };
 
   home-manager.users.sylvie = { config, pkgs, ... }: {
@@ -31,19 +31,38 @@
       # Apps
 
       # Dev
+      cloc
+      docker
+      fswatch
+      mkcert
       nox
+      graphviz
+      hyperfine
+      ispell
       jq
+      skopeo
       tmux
+      vagrant
+      yq
 
       # Fonts
 
       # Sys tools
+      # autoconf
+      # automake
+      coreutils-full
       exa
+      findutils
       fd
       fish
       fishPlugins.foreign-env
       fzf
+      gnumake
+      gnutls
       htop
+      libfido2
+      nmap
+      openssh
       ripgrep
       stow
     ];

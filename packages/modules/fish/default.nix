@@ -2,9 +2,33 @@
 let
   fish_config = builtins.readFile ./config/config.fish;
 
+  # see https://github.com/LnL7/nix-darwin/issues/122
+  environment.etc."fish/nixos-env-preinit.fish".text = lib.mkMerge [
+    (lib.mkBefore ''
+      set -g __nixos_path_original $PATH
+    '')
+    (lib.mkAfter ''
+      function __nixos_path_fix -d "fix PATH value"
+      set -l result (string replace '$HOME' "$HOME" $__nixos_path_original)
+      for elt in $PATH
+        if not contains -- $elt $result
+          set -a result $elt
+        end
+      end
+      set -g PATH $result
+      fenv source /run/current-system/etc/zshenv > /dev/null
+      fish_config
+      end
+
+      ${fish_config}
+      '')
+  ];
+
+
 in {
   programs.fish = {
     shellInit = fish_config;
+
     plugins = [
       {
         name = "pure";
@@ -36,9 +60,9 @@ in {
     ];
 
     functions = {
-      darwin-reload = ''
-        darwin-rebuild switch -I darwin-config=$_DARWIN_CONFIG
-      '';
+      # darwin-reload = ''
+      #   darwin-rebuild switch -I darwin-config=$_DARWIN_CONFIG
+      # '';
 
       load_nix = ''
         # Don't execute this file when running in a pure nix-shell.
@@ -47,9 +71,7 @@ in {
            return
         end
 
-        if test ! -e "$__NIX_DARWIN_SET_ENVIRONMENT_DONE"
-          fenv source /nix/store/6nzvy4gzmqblacm0h6yci4nk9b139gkr-set-environment > /dev/null
-        end
+        fenv source /run/current-system/etc/zshenv > /dev/null
       '';
 
       cachix_push = ''
@@ -60,8 +82,8 @@ in {
       '';
 
       docker_rm_by_name = ''
-                    --argument name
-                     docker ps -a --format "{{.ID}} {{.Image}} {{.Names}}" | grep "$name" | awk '{print $1}' | xargs -I {} docker rm {}
+      --argument name
+        docker ps -a --format "{{.ID}} {{.Image}} {{.Names}}" | grep "$name" | awk '{print $1}' | xargs -I {} docker rm {}
       end
       '';
 
