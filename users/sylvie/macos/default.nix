@@ -1,26 +1,21 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+
+let
+in {
   imports = [
     ../common.nix
-    # ../../../packages/modules/docker
+    ./common/system
+    ../../../packages/services/yabai
+    #../../../packages/services/emacs/macos
   ];
 
-  # nixpkgs.overlays = [
-  #   (final: prev: {
-  #     dockerDesktop = prev.callPackage ../../../packages/modules/docker { inherit config; };
-  #   }) ];
-
   # modules.dockerDesktop.enable = true;
-
-  system.keyboard = {
-    enableKeyMapping = true;
-    remapCapsLockToControl = true;
-  };
+  # programs.amethyst.enable = true;
 
   home-manager.users.sylvie = { config, pkgs, ... }: {
     imports = [
       ../../../packages/macos.nix
     ];
-
 
     fonts.fontconfig.enable = false;
 
@@ -37,6 +32,7 @@
           target = ".config/iterm2";
           recursive = true;
         };
+
         homebrew = {
           source = ./config/homebrew;
           target = ".config/homebrew";
@@ -53,10 +49,14 @@
       # Fonts
       cascadia-code
 
+      # Dev
       #dockerDesktop
+
       # Sys tools
       # iterm2
+      # amethyst
       pinentry_mac
+      yabai
     ];
   };
 }

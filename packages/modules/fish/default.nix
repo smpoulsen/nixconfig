@@ -78,29 +78,24 @@ in {
         nix flake archive --json \
         | jq -r '.path,(.inputs|to_entries[].value.path)' \
         | cachix push smpoulsen-cache
-        end
       '';
 
       docker_rm_by_name = ''
       --argument name
         docker ps -a --format "{{.ID}} {{.Image}} {{.Names}}" | grep "$name" | awk '{print $1}' | xargs -I {} docker rm {}
-      end
       '';
 
       ssh_reset_yubikey = ''
         gpg-connect-agent "scd serialno" "learn --force" /bye
-        end
         '';
 
       yubikey_5ci = ''
         ykman --device 14411590 $argv
-        end
       '';
 
-        yubikey_5nfc = ''
-          ykman --device 16752700 $argv
-          end
-        '';
+      yubikey_5nfc = ''
+        ykman --device 16752700 $argv
+      '';
     };
   };
 

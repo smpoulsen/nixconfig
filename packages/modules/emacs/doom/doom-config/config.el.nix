@@ -16,13 +16,44 @@
 
       ;; SPC-p-v to open magit
       (:prefix ("p" . "project")
+        :desc "open layout" "l" #'projectile-switch-project
         :desc "magit" "v" #'magit)
 
       ;; Change window split keybindings
       (:prefix ("w" . "window")
-        :desc "Vertical split" "/" #'evil-window-vsplit
-        :desc "Horizontal split" "-" #'evil-window-split
-        :desc "Decrease window height" "C--" #'evil-window-decrease-height))
+        :desc "Vertical split" "/" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-vsplit))
+        :desc "Horizontal split" "-" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
+        :desc "Horizontal split" "0" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
+
+        :desc "Move to right window" "l" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-right))
+        :desc "Move to window above" "k" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-up))
+        :desc "Move to window below" "j" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-down))
+        :desc "Move to left window" "h" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-left))
+
+        :desc "Decrease window height" "C--" #'evil-window-decrease-height)
+
+      ;; Add layout keybindings
+      (:prefix ("l" . "layout")
+        (:prefix ("g" . "golden-ratio")
+          :desc "Resize with golden-ratio" "g" #'golden-ratio-mode
+          :desc "Toggle golden-ratio-mode" "t" #'golden-ratio-mode)
+
+        :desc "Open project in new workspace" "p" #'projectile-switch-project
+        :desc "Close workspace" "x" #'+workspace/delete
+
+        :desc "Rename workspace" "," #'+workspace/rename
+
+        :desc "Display workspaces" "l" #'+workspace/display
+        :desc "Switch to workspace 1" "1" #'+workspace/switch-to-0
+        :desc "Switch to workspace 2" "2" #'+workspace/switch-to-1
+        :desc "Switch to workspace 3" "3" #'+workspace/switch-to-2
+        :desc "Switch to workspace 4" "4" #'+workspace/switch-to-4
+        :desc "Switch to workspace 5" "5" #'+workspace/switch-to-4
+        :desc "Switch to workspace 6" "6" #'+workspace/switch-to-5
+        :desc "Switch to workspace 7" "7" #'+workspace/switch-to-6
+        :desc "Switch to workspace 8" "8" #'+workspace/switch-to-7
+        :desc "Switch to workspace 9" "9" #'+workspace/switch-to-8
+        :desc "Switch to workspace 10" "0" #'+workspace/switch-to-9))
    '';
 
    config = ''
@@ -30,7 +61,13 @@
 
     ;; Place your private configuration here! Remember, you do not need to run 'doom
     ;; sync' after modifying this file!
+    (require 'golden-ratio)
+    (golden-ratio-mode 1)
 
+    (defun sylvie/gr-wrapper (fun)
+      (interactive)
+      (funcall fun)
+      (golden-ratio))
 
     ;; Some functionality uses this to identify you, e.g. GPG configuration, email
     ;; clients, file templates and snippets.

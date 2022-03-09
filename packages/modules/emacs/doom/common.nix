@@ -5,8 +5,8 @@
 
     doomRepo = builtins.fetchGit {
       url = "https://github.com/hlissner/doom-emacs";
-      ref = "develop";
-      rev = "f458f9776049fd7e9523318582feed682e7d575c";
+      ref = "master";
+      rev = "42e5763782fdc1aabb9f2624d468248d6978abe2";
     };
 
     doomChangeScript = ''
@@ -19,6 +19,11 @@
       fi
     '';
 
+    doomSyncScript = ''
+      export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
+      export DOOMLOCALDIR="${config.home.sessionVariables.DOOMLOCALDIR}"
+      ${config.xdg.configHome}/emacs/bin/doom -y sync
+    '';
   in {
 
     home = {
@@ -32,10 +37,22 @@
     xdg = {
       enable = true;
       configFile = {
-        "doom-config/config.el".text = "${doomConfig.config}";
-        "doom-config/init.el".text = "${doomConfig.init}";
-        "doom-config/packages.el".text = "${doomConfig.packages}";
-        "doom-config/private/init.el".text = "${privateConfig.private.init}";
+        "doom-config/config.el"= {
+          text = "${doomConfig.config}";
+          onChange = "${pkgs.writeShellScript "doom-change" doomSyncScript}";
+        };
+        "doom-config/init.el"= {
+          text = "${doomConfig.init}";
+          onChange = "${pkgs.writeShellScript "doom-change" doomSyncScript}";
+        };
+        "doom-config/packages.el"= {
+          text = "${doomConfig.packages}";
+          onChange = "${pkgs.writeShellScript "doom-change" doomSyncScript}";
+        };
+        "doom-config/private/init.el"= {
+          text = "${privateConfig.private.init}";
+          onChange = "${pkgs.writeShellScript "doom-change" doomSyncScript}";
+        };
         "emacs" = {
           source = doomRepo;
           onChange = "${pkgs.writeShellScript "doom-change" doomChangeScript}";
@@ -48,11 +65,20 @@
         emacs-all-the-icons-fonts
         ## Emacs itself
         binutils       # native-comp needs 'as', provided by this
+        # emacsPgtkGcc   # 28 + pgtk + native-comp
+        # ((emacsPackagesNgGen emacsPgtkGcc).emacsWithPackages (epkgs: [
+        #  epkgs.vterm
+        # ]))
 
         ## Doom dependencies
         git
         (ripgrep.override {withPCRE2 = true;})
         gnutls              # for TLS connectivity
+
+        emacs27Packages.ggtags
+        emacs27Packages.golden-ratio
+        # emacs27Packages.multi-vterm
+        # emacs27Packages.vterm
 
         ## Optional dependencies
         fd                  # faster projectile indexing
@@ -71,14 +97,10 @@
         editorconfig-core-c # per-project style config
         # :tools lookup & :lang org +roam
         sqlite
-        # :lang cc
-        # ccls
         # :lang javascript
         nodePackages.typescript-language-server
         # :lang latex & :lang org (latex previews)
         texlive.combined.scheme-medium
-        # :lang beancount
-        # beancount
         # unstable.fava  # HACK Momentarily broken on nixos-unstable
         # :lang rust
         rustfmt

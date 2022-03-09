@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
-    ./doom
+    ./common.nix
+    doom/nixos.nix
   ];
   programs.emacs.enable = true;
 }

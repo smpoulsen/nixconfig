@@ -4,28 +4,26 @@
   imports = [
     <home-manager/nix-darwin>
     ../../common
-    ../../../users/macos.nix
+    ../../../users/sylvie/macos/sylvie-mbp.nix
   ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [
+  environment.systemPackages = [
       pkgs.openvpn
     ];
-
-  nixpkgs.config.allowBroken = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
-  nix.useDaemon = true;
-  services.nix-daemon.enable = true;
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
   environment.darwinConfig = "$HOME/code/nixconfig/machines/macos/sylvie-mbp/darwin-configuration.nix";
 
+  nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+  nix.useDaemon = true;
+  services.nix-daemon.enable = true;
   # Auto upgrade nix package and the daemon service.
-  # services.nix-daemon.enable = true;
-  # nix.package = pkgs.nix;
+  nix.package = pkgs.nix;
+
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina

@@ -51,6 +51,15 @@
     ;(unpin! pinned-package another-pinned-package)
     ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
     ;(unpin! t)
+
+    ;; xref error in erlang-mode
+    ;; https://www.reddit.com/r/DoomEmacs/comments/q9njsv/folks_on_a_recent_commit_of_emacs_28_are_seeing/
+    (package! xref :pin "a82f459b37b31546bf274388baf8aca79e9c30d9")
+
+    (package! company-erlang)
+    ;;(package! vterm)
+    ;;(package! multi-vterm)
+    (package! golden-ratio)
   '';
 in {
   cfg = config;

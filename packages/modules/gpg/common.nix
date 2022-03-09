@@ -2,6 +2,11 @@
 
   programs.gpg = {
     enable = true;
+    # Needed to fix yubikey recognition w/ gpg 2.3
+    scdaemonSettings = {
+      reader-port = "Yubico Yubikey";
+      disable-ccid = true;
+    };
     settings = {
       # https://github.com/drduh/config/blob/master/gpg.conf
       # https://www.gnupg.org/documentation/manuals/gnupg/GPG-Configuration-Options.html

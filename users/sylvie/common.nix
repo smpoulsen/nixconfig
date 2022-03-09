@@ -34,13 +34,11 @@
       cloc
       docker
       fswatch
-      mkcert
       nox
       graphviz
       hyperfine
       ispell
       jq
-      skopeo
       tmux
       vagrant
       yq
@@ -48,8 +46,9 @@
       # Fonts
 
       # Sys tools
-      # autoconf
-      # automake
+      autoconf
+      automake
+      cmake
       coreutils-full
       exa
       findutils
@@ -65,6 +64,7 @@
       openssh
       ripgrep
       stow
+      yubikey-manager
     ];
   };
 }

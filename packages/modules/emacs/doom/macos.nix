@@ -1,6 +1,5 @@
 { ... }: {
   imports = [
-    ./i3
+    ./common.nix
   ];
 }
-
