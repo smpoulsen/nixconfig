@@ -1,6 +1,0 @@
---dir=/persist/nixconfig
---target=/etc/nixos/
---dotfiles
---ignore='result'
---ignore='*.swp'
---ignore='dot-*'

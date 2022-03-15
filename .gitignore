@@ -1,2 +1,5 @@
 *.swp
 **/.emacs.d/*
+result
+*.DS_STORE
+.envrc
