@@ -14,6 +14,8 @@
       pkgs.openvpn
     ];
 
+  environment.pathsToLink = [ "/share/fish" ];
+
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnsupportedSystem = true;
   nix.useDaemon = true;

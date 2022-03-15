@@ -38,5 +38,7 @@ if functions -q load_nix
     load_nix
 end
 
+set -g fish_user_paths /etc/profiles/per-user/sylvie/bin $fish_user_paths
 direnv hook fish | source
+
 # set -g fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
