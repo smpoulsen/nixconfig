@@ -29,7 +29,7 @@ in {
 
   home.file = {
     "netrc.gpg" = {
-      text = "";
+      text = "1";
       onChange = "${pkgs.writeShellScript "netrc-change" netrcChange}";
     };
   };

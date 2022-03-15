@@ -18,7 +18,6 @@
     # Bind window splitting to the same as I use in emacs.
     # New panes open in same directory w/ the -c flag.
     bind / split-window -h -c '#{pane_current_path}' # horizontal split
-    bind 0 split-window -v -c '#{pane_current_path}' # vertical split
     bind - split-window -v -c '#{pane_current_path}' # Vertical split
 
     # When creating new window, keep same directory

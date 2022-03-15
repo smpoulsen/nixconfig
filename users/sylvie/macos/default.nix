@@ -21,6 +21,7 @@ in {
 
     home = {
       # Env Vars
+      username = "sylvie";
       homeDirectory = /Users/sylvie;
       sessionVariables = {
         TERMINAL = "iTerm2";
@@ -45,6 +46,7 @@ in {
       # Apps
 
       # Dev
+      postgresql_14
 
       # Fonts
       cascadia-code

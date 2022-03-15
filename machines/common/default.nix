@@ -16,6 +16,7 @@
     nix.extraOptions = ''
     keep-outputs = true
     keep-derivations = true
+    experimental-features = nix-command flakes
   '';
 
   # List packages installed in system profile. To search, run:
