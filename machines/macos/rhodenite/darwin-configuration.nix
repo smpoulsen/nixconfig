@@ -13,9 +13,7 @@
       pkgs.openvpn
     ];
 
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  environment.darwinConfig = "$HOME/code/nixconfig/machines/macos/rhodenite/darwin-configuration.nix";
+  environment.pathsToLink = [ "/share/fish" ];
 
   nixpkgs.config.allowBroken = true;
   nixpkgs.config.allowUnsupportedSystem = true;
