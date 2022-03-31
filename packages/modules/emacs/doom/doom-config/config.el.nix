@@ -55,7 +55,26 @@
         :desc "Switch to workspace 7" "7" #'+workspace/switch-to-6
         :desc "Switch to workspace 8" "8" #'+workspace/switch-to-7
         :desc "Switch to workspace 9" "9" #'+workspace/switch-to-8
-        :desc "Switch to workspace 10" "0" #'+workspace/switch-to-9))
+        :desc "Switch to workspace 10" "0" #'+workspace/switch-to-9)
+
+      ;; Map undo-tree
+      (:prefix ("U" . "undo-tree")
+        :desc "visualize undo-tree" "v" #'undo-tree-visualize
+        :desc "save undo-tree history" "s" #'undo-tree-save
+        :desc "load undo-tree history" "l" #'undo-tree-save
+      )
+
+      ;; Sql mode keymaps
+      (:prefix ("d" . "sql-mode")
+        :desc "connect with known config" "d" #'sql-connect
+        :desc "start postgres proc" "c" #'sql-postgres
+        :desc "send region" "r" #'sql-send-region
+        :desc "send buffer" "b" #'sql-send-buffer
+        :desc "send current paragraph" "p" #'sql-send-paragraph
+        :desc "set sql process for current buffer" "s" #'sql-set-sqli-buffer
+      )
+
+     )
    '';
 
    config = ''
@@ -70,6 +89,9 @@
       (interactive)
       (funcall fun)
       (golden-ratio))
+
+    ;; default to postgres in sql-mode
+    (with-eval-after-load "sql" (sql-set-product 'postgres))
 
     ;; Some functionality uses this to identify you, e.g. GPG configuration, email
     ;; clients, file templates and snippets.

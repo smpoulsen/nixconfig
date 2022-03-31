@@ -58,6 +58,7 @@ in {
       # iterm2
       # amethyst
       pinentry_mac
+      skhd
       yabai
     ];
   };

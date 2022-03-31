@@ -60,6 +60,8 @@
     ;;(package! vterm)
     ;;(package! multi-vterm)
     (package! golden-ratio)
+    (package! undo-tree)
+    (package! sqlup-mode)
   '';
 in {
   cfg = config;

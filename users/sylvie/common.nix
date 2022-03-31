@@ -27,7 +27,6 @@
     programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
-      enableFishIntegration = true;
     };
 
     home.packages = with pkgs; [
@@ -65,6 +64,7 @@
       libfido2
       nmap
       openssh
+      openvpn
       ripgrep
       stow
       yubikey-manager

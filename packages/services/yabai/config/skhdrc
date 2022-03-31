@@ -1,7 +1,7 @@
 # open terminal
 #cmd + ctrl - t: /Applications/iTerm
 
-#cmd + ctrl - e: /nix/var/nix/profiles/per-user/sylvie/home-manager/home-path/bin/emacsclient -c -a ''
+#cmd + ctrl - e: emacsclient -c -a ''
 
 # focus window
 cmd + ctrl - h : yabai -m window --focus west

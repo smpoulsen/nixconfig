@@ -96,6 +96,13 @@ in {
       yubikey_5nfc = ''
         ykman --device 16752700 $argv
       '';
+
+      find_secure_keyboard = ''
+        ioreg -l -w 0 \
+                  | perl -nle 'print $1 if /"kCGSSessionSecureInputPID"=(\d+)/' \
+                  | uniq \
+                  | xargs -I{} ps -p {} -o comm=
+      '';
     };
   };
 
