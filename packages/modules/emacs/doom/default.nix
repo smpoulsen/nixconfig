@@ -75,10 +75,10 @@
         (ripgrep.override {withPCRE2 = true;})
         gnutls              # for TLS connectivity
 
-        emacs27Packages.ggtags
-        emacs27Packages.golden-ratio
-        # emacs27Packages.multi-vterm
-        # emacs27Packages.vterm
+        emacsPackages.ggtags
+        emacsPackages.golden-ratio
+        # emacsPackages.multi-vterm
+        # emacsPackages.vterm
 
         ## Optional dependencies
         fd                  # faster projectile indexing

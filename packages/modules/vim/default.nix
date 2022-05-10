@@ -1,32 +1,43 @@
-{ pkgs, ... }: {
-  programs.vim = {
-    enable = true;
-    settings = {
-      # Line numbers.
-      number = true;
+{ lib, pkgs, config, ... }:
+with lib;
 
-      # modeline = true;
+let
+  cfg = config.sylvie.packages.vim;
 
-      # Convert tabs to spaces.
-      tabstop = 2;
-      shiftwidth = 2;
-      expandtab = true;
+in {
+  options.sylvie.packages.vim = {
+    enable = mkEnableOption "Vim config";
+  };
 
-      mouse = "a";
+  config = mkIf cfg.enable {
+    programs.vim = {
+      enable = true;
+      settings = {
+        # Line numbers.
+        number = true;
 
-      smartcase = true;
-      ignorecase = true;
-    };
+        # modeline = true;
 
-    plugins = with pkgs.vimPlugins; [
-      vim-airline
-      vim-css-color
-      nord-vim
-      gitgutter
-      syntastic
-    ];
+        # Convert tabs to spaces.
+        tabstop = 2;
+        shiftwidth = 2;
+        expandtab = true;
 
-    extraConfig = ''
+        mouse = "a";
+
+        smartcase = true;
+        ignorecase = true;
+      };
+
+      plugins = with pkgs.vimPlugins; [
+        vim-airline
+        vim-css-color
+        nord-vim
+        gitgutter
+        syntastic
+      ];
+
+      extraConfig = ''
       set encoding=utf-8 
 
       "Colorscheme.
@@ -73,6 +84,6 @@
       nmap <C-a> <Home>
       nmap <C-e> <End>
     '';
+    };
   };
 }
-

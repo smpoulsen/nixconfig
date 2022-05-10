@@ -1,6 +1,9 @@
-{ pkgs, config, ...}:
+{ lib, pkgs, config, ... }:
+with lib;
 
 let
+  cfg = config.sylvie.packages.git;
+  gpgHelper = cfg.helper == "gpg";
 
   netrcChange = ''
   export GITHUB_USER="${config.home.sessionVariables.GITHUB_USER}"
@@ -19,39 +22,63 @@ let
   '';
 
 in {
+  options.sylvie.packages.git = {
+    enable = mkEnableOption "Git config";
 
-  home = {
-    sessionVariables = {
-      GITHUB_USER = "smpoulsen";
-      GITHUB_PAT = builtins.getEnv "GITHUB_PAT";
+    email = mkOption {
+      type = types.str;
+      default = "git@poulsen.xyz";
+    };
+
+    gpg = {
+      sign = mkOption {
+        type = types.bool;
+        default = true;
+      };
+    };
+
+    helper = {
+      type = types.enum [ "netrc" "gpg" ];
+      default = "netrc";
     };
   };
 
-  home.file = {
-    "netrc.gpg" = {
-      text = "1";
-      onChange = "${pkgs.writeShellScript "netrc-change" netrcChange}";
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Sylvie Poulsen";
-    userEmail = "git@poulsen.xyz";
-    signing = {
-      key = "AEB12283C38DBBE5";
-    };
-    extraConfig = {
-      init = {
-        defaultBranch = "main";
+  config = mkIf cfg.enable {
+    home = {
+      sessionVariables = {
+        GITHUB_USER = "smpoulsen";
+        GITHUB_PAT = builtins.getEnv "GITHUB_PAT";
       };
+    };
 
-      commit = {
-        #gpgsign = true;
+    home.file = mkIf gpgHelper {
+      "netrc.gpg" = {
+        text = "1";
+        onChange = "${pkgs.writeShellScript "netrc-change" netrcChange}";
       };
+    };
 
-      credential = {
-	      helper = "netrc -f ~/.config/.netrc.gpg -v";
+    programs.git = {
+      enable = true;
+      userName = "Sylvie Poulsen";
+      userEmail = cfg.email;
+      signing = {
+        key = "AEB12283C38DBBE5";
+      };
+      extraConfig = {
+        init = {
+          defaultBranch = "main";
+        };
+
+        commit = {
+          gpgsign = cfg.gpg.sign;
+        };
+
+        credential = {
+          helper = if gpgHelper
+                   then "netrc -f ~/.config/.netrc.gpg -v"
+                   else "netrc -f ~/.config/.netrc -v" ;
+        };
       };
     };
   };

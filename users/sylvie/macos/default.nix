@@ -3,7 +3,7 @@
 let
 in {
   imports = [
-    ../common.nix
+    ../home
     ./common/system
     ../../../packages/services/yabai
     #../../../packages/services/emacs/macos

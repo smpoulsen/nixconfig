@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ./modules
     # Modules
     modules/emacs/nixos.nix
     modules/alacritty

@@ -1,18 +1,29 @@
-{ pkgs, ... }: {
-  programs.neovim = {
-    enable = true;
-    viAlias = false;
-    vimAlias = true;
+{ lib, pkgs, config, ... }:
+with lib;
 
-    plugins = with pkgs.vimPlugins; [
-      vim-airline
-      vim-css-color
-      nord-vim
-      gitgutter
-      syntastic
-    ];
+let
+  cfg = config.sylvie.packages.neovim;
 
-    extraConfig = ''
+in {
+  options.sylvie.packages.neovim = {
+    enable = mkEnableOption "Vim config";
+  };
+
+  config = mkIf cfg.enable {
+    programs.neovim = {
+      enable = true;
+      viAlias = false;
+      vimAlias = true;
+
+      plugins = with pkgs.vimPlugins; [
+        vim-airline
+        vim-css-color
+        nord-vim
+        gitgutter
+        syntastic
+      ];
+
+      extraConfig = ''
       set encoding=utf-8 
 
       "Line numbers.
@@ -74,5 +85,6 @@
       nmap <C-a> <Home>
       nmap <C-e> <End>
     '';
+    };
   };
 }

@@ -1,55 +1,67 @@
-{ pkgs, ... }: {
-  programs.alacritty = {
-    enable = true;
+{ lib, pkgs, config, ... }:
+with lib;
 
-    settings = {
-      font = {
-        use_thin_strokes = true;
-        size = 12.0;
+let
+  cfg = config.sylvie.packages.alacritty;
 
-        normal.famiy = "Cascadia Code";
-        bold.famiy = "Cascadia Code";
-        italic.famiy = "Cascadia Code";
-      };
+in {
+  options.sylvie.packages.alacritty = {
+    enable = mkEnableOption "alacritty config";
+  };
 
-      cursor.style = "Block";
+  config = mkIf cfg.enable {
+    programs.alacritty = {
+      enable = true;
 
-      shell = {
-        program = "fish";
-      };
+      settings = {
+        font = {
+          use_thin_strokes = true;
+          size = 12.0;
 
-      # Nord
-      colors = {
-        primary = {
-          background = "0x2E3440";
-          foreground = "0xD8DEE9";
+          normal.famiy = "Cascadia Code";
+          bold.famiy = "Cascadia Code";
+          italic.famiy = "Cascadia Code";
         };
 
-        cursor = {
-          text = "0x2E3440";
-          cursor = "0xD8DEE9";
+        cursor.style = "Block";
+
+        shell = {
+          program = "fish";
         };
 
-        normal = {
-          black = "0x3B4252";
-          red = "0xBF616A";
-          green = "0xA3BE8C";
-          yellow = "0xEBCB8B";
-          blue = "0x81A1C1";
-          magenta = "0xB48EAD";
-          cyan = "0x88C0D0";
-          white = "0xE5E9F0";
-        };
+        # Nord
+        colors = {
+          primary = {
+            background = "0x2E3440";
+            foreground = "0xD8DEE9";
+          };
 
-        bright = {
-          black = "0x4C566A";
-          red = "0xBF616A";
-          green = "0xA3BE8C";
-          yellow = "0xEBCB8B";
-          blue = "0x81A1C1";
-          magenta = "0xB48EAD";
-          cyan = "0x8FBCBB";
-          white = "0xECEFF4";
+          cursor = {
+            text = "0x2E3440";
+            cursor = "0xD8DEE9";
+          };
+
+          normal = {
+            black = "0x3B4252";
+            red = "0xBF616A";
+            green = "0xA3BE8C";
+            yellow = "0xEBCB8B";
+            blue = "0x81A1C1";
+            magenta = "0xB48EAD";
+            cyan = "0x88C0D0";
+            white = "0xE5E9F0";
+          };
+
+          bright = {
+            black = "0x4C566A";
+            red = "0xBF616A";
+            green = "0xA3BE8C";
+            yellow = "0xEBCB8B";
+            blue = "0x81A1C1";
+            magenta = "0xB48EAD";
+            cyan = "0x8FBCBB";
+            white = "0xECEFF4";
+          };
         };
       };
     };

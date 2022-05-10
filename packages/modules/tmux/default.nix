@@ -1,9 +1,8 @@
-{ pkgs, ... }: let
+{ pkgs, config, lib, options, ... }:
+with lib;
 
-  # Rebind leader to Ctrl-a
-  leader = "a";
-  # enable 256 color term.
-  term = "screen-256color";
+let
+  cfg = config.sylvie.packages.tmux;
 
   tmuxConf = ''
     # bind 'C-a C-a' to type 'C-a'
@@ -53,32 +52,51 @@
     # Show continuum status in status bar
     # set -g status-right 'Continuum status: #{continuum_status}'
   '';
+
 in {
-  programs.tmux = {
-    enable = true;
+  options.sylvie.packages.tmux = {
+    enable = mkEnableOption "tmux config";
 
-    shortcut = leader;
-    terminal = term;
+    leader = mkOption {
+      type = types.str;
+      default = "a";
+      description = "Rebind leader to Ctrl-a";
+    };
 
-    extraConfig = tmuxConf;
+    term = mkOption {
+      type = types.str;
+      default = "screen-256color";
+      description = "Enable 256 color term";
+    };
+  };
 
-    plugins = with pkgs.tmuxPlugins; [
-      cpu
-      ctrlw
-      tmux-fzf
-      nord
-      sensible
-      {
-        plugin = resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
-      {
-        plugin = continuum;
-        extraConfig = ''
+  config = mkIf cfg.enable {
+    programs.tmux = {
+      enable = true;
+
+      shortcut = cfg.leader;
+      terminal = cfg.term;
+
+      extraConfig = tmuxConf;
+
+      plugins = with pkgs.tmuxPlugins; [
+        cpu
+        ctrlw
+        tmux-fzf
+        nord
+        sensible
+        {
+          plugin = resurrect;
+          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        }
+        {
+          plugin = continuum;
+          extraConfig = ''
         set -g @continuum-restore 'on'
         set -g @continuum-save-interval '60' # minutes
         '';
-      }
-    ];
+        }
+      ];
+    };
   };
 }
