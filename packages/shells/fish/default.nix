@@ -10,6 +10,7 @@ let
   environment.etc."fish/nixos-env-preinit.fish".text = lib.mkMerge [
     (lib.mkBefore ''
       set -g __nixos_path_original $PATH
+      set -g __nixos_nix_path_original $NIX_PATH
     '')
     (lib.mkAfter ''
       function __nixos_path_fix -d "fix PATH value"
@@ -19,7 +20,16 @@ let
           set -a result $elt
         end
       end
+
+      set -l nix_result (string replace '$HOME' "$HOME" $__nixos_nix_path_original)
+      for elt in $NIX_PATH
+        if not contains -- $elt $nix_result
+          set -a nix_result $elt
+        end
+      end
+
       set -g PATH $result
+      set -g NIX_PATH $nix_result
       fenv source /run/current-system/etc/zshenv > /dev/null
       fish_config
       end

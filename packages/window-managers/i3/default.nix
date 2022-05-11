@@ -2,10 +2,10 @@
 with lib;
 
 let
-  cfg = config.sylvie.services.i3;
+  cfg = config.sylvie.packages.window-managers.i3;
   mod = "Mod4";
 in {
-  options.sylvie.services.i3 = {
+  options.sylvie.packages.window-managers.i3 = {
     enable = mkEnableOption "i3 config";
   };
 

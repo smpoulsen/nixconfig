@@ -3,8 +3,10 @@ with lib;
 
 let
   cfg = config.users.sylvie;
+
   isMac = pkgs.system == "x86_64-darwin";
   fontConfig = if isMac then false else true;
+
   homePackages = with pkgs; [
     # Apps
     _1password-gui

@@ -1,5 +1,7 @@
 { ... }: {
   imports = [
+    ./git
+    ./gpg
+    ./tmux
   ];
 }
-

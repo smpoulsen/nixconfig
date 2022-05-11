@@ -21,6 +21,16 @@
       email = "sylvie.poulsen@philips.com";
       gpg.sign = false;
     };
+
+    window-managers.gnome = {
+      enable = true;
+      paperWm = true;
+    };
+
+    communication = {
+      teams.enable = true;
+      slack.enable = true;
+    };
   };
 
   xdg.enable = true;
