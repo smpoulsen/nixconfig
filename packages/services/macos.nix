@@ -3,7 +3,7 @@
 {
   imports = [
     ./common.nix
-    ./yabai
+    #./yabai
     ./emacs/macos
   ];
 }

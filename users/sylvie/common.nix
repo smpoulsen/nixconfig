@@ -41,6 +41,7 @@
       hyperfine
       ispell
       jq
+      terraform
       tmux
       vagrant
       yq

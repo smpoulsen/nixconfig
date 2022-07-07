@@ -20,6 +20,7 @@
       nss
       podman
       skopeo
+      vscode
 
       # Fonts
 

@@ -13,9 +13,7 @@ in {
   # programs.amethyst.enable = true;
 
   home-manager.users.sylvie = { config, pkgs, ... }: {
-    imports = [
-      ../../../packages/macos.nix
-    ];
+    imports = [ ../../../packages/macos.nix ];
 
     fonts.fontconfig.enable = false;
 
@@ -23,9 +21,7 @@ in {
       # Env Vars
       username = "sylvie";
       homeDirectory = /Users/sylvie;
-      sessionVariables = {
-        TERMINAL = "iTerm2";
-      };
+      sessionVariables = { TERMINAL = "iTerm2"; };
 
       file = {
         iterm = {
@@ -59,7 +55,7 @@ in {
       # amethyst
       pinentry_mac
       skhd
-      yabai
+      #yabai
     ];
   };
 }

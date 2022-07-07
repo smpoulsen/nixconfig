@@ -1,83 +1,84 @@
-{ options, ... }: let
+{ options, ... }:
+let
 
-   # General syntax:
-   # (map! :leader
-   #    (:prefix-map ("w" . "window") ;; to display 'window' in the minibuffer
-   #     (:prefix ("/" . "journal")   ;; sub menu to 'journal'
-   #      :desc "New journal entry" "j" #'org-journal-new-entry
-   #      :desc "Search journal entry" "s" #'org-journal-search)))
-   keybindings = ''
-   (map! :leader
+  # General syntax:
+  # (map! :leader
+  #    (:prefix-map ("w" . "window") ;; to display 'window' in the minibuffer
+  #     (:prefix ("/" . "journal")   ;; sub menu to 'journal'
+  #      :desc "New journal entry" "j" #'org-journal-new-entry
+  #      :desc "Search journal entry" "s" #'org-journal-search)))
+  keybindings = ''
+    (map! :leader
 
-      ;; SPC-SPC to open M-x
-      :desc "Command" "SPC" #'counsel-M-x
-      ;; SPC-: to find a file in the current project
-      :desc "Find file in current project" ":" #'projectile-find-file
+       ;; SPC-SPC to open M-x
+       :desc "Command" "SPC" #'counsel-M-x
+       ;; SPC-: to find a file in the current project
+       :desc "Find file in current project" ":" #'projectile-find-file
 
-      ;; SPC-p-v to open magit
-      (:prefix ("p" . "project")
-        :desc "open layout" "l" #'projectile-switch-project
-        :desc "checkout branch" "B" #'magit-branch-checkout
-        :desc "blame" "b" #'magit-blame
-        :desc "magit" "v" #'magit)
+       ;; SPC-p-v to open magit
+       (:prefix ("p" . "project")
+         :desc "open layout" "l" #'projectile-switch-project
+         :desc "checkout branch" "B" #'magit-branch-checkout
+         :desc "blame" "b" #'magit-blame
+         :desc "magit" "v" #'magit)
 
-      ;; Change window split keybindings
-      (:prefix ("w" . "window")
-        :desc "Vertical split" "/" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-vsplit))
-        :desc "Horizontal split" "-" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
-        :desc "Horizontal split" "0" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
+       ;; Change window split keybindings
+       (:prefix ("w" . "window")
+         :desc "Vertical split" "/" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-vsplit))
+         :desc "Horizontal split" "-" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
+         :desc "Horizontal split" "0" #'(lambda () (interactive) (sylvie/gr-wrapper #'evil-window-split))
 
-        :desc "Move to right window" "l" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-right))
-        :desc "Move to window above" "k" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-up))
-        :desc "Move to window below" "j" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-down))
-        :desc "Move to left window" "h" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-left))
+         :desc "Move to right window" "l" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-right))
+         :desc "Move to window above" "k" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-up))
+         :desc "Move to window below" "j" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-down))
+         :desc "Move to left window" "h" #'(lambda () (interactive) (sylvie/gr-wrapper #'windmove-left))
 
-        :desc "Decrease window height" "C--" #'evil-window-decrease-height)
+         :desc "Decrease window height" "C--" #'evil-window-decrease-height)
 
-      ;; Add layout keybindings
-      (:prefix ("l" . "layout")
-        (:prefix ("g" . "golden-ratio")
-          :desc "Resize with golden-ratio" "g" #'golden-ratio-mode
-          :desc "Toggle golden-ratio-mode" "t" #'golden-ratio-mode)
+       ;; Add layout keybindings
+       (:prefix ("l" . "layout")
+         (:prefix ("g" . "golden-ratio")
+           :desc "Resize with golden-ratio" "g" #'golden-ratio-mode
+           :desc "Toggle golden-ratio-mode" "t" #'golden-ratio-mode)
 
-        :desc "Open project in new workspace" "p" #'projectile-switch-project
-        :desc "Close workspace" "x" #'+workspace/delete
+         :desc "Open project in new workspace" "p" #'projectile-switch-project
+         :desc "Close workspace" "x" #'+workspace/delete
 
-        :desc "Rename workspace" "," #'+workspace/rename
+         :desc "Rename workspace" "," #'+workspace/rename
 
-        :desc "Display workspaces" "l" #'+workspace/display
-        :desc "Switch to workspace 1" "1" #'+workspace/switch-to-0
-        :desc "Switch to workspace 2" "2" #'+workspace/switch-to-1
-        :desc "Switch to workspace 3" "3" #'+workspace/switch-to-2
-        :desc "Switch to workspace 4" "4" #'+workspace/switch-to-3
-        :desc "Switch to workspace 5" "5" #'+workspace/switch-to-4
-        :desc "Switch to workspace 6" "6" #'+workspace/switch-to-5
-        :desc "Switch to workspace 7" "7" #'+workspace/switch-to-6
-        :desc "Switch to workspace 8" "8" #'+workspace/switch-to-7
-        :desc "Switch to workspace 9" "9" #'+workspace/switch-to-8
-        :desc "Switch to workspace 10" "0" #'+workspace/switch-to-9)
+         :desc "Display workspaces" "l" #'+workspace/display
+         :desc "Switch to workspace 1" "1" #'+workspace/switch-to-0
+         :desc "Switch to workspace 2" "2" #'+workspace/switch-to-1
+         :desc "Switch to workspace 3" "3" #'+workspace/switch-to-2
+         :desc "Switch to workspace 4" "4" #'+workspace/switch-to-3
+         :desc "Switch to workspace 5" "5" #'+workspace/switch-to-4
+         :desc "Switch to workspace 6" "6" #'+workspace/switch-to-5
+         :desc "Switch to workspace 7" "7" #'+workspace/switch-to-6
+         :desc "Switch to workspace 8" "8" #'+workspace/switch-to-7
+         :desc "Switch to workspace 9" "9" #'+workspace/switch-to-8
+         :desc "Switch to workspace 10" "0" #'+workspace/switch-to-9)
 
-      ;; Map undo-tree
-      (:prefix ("U" . "undo-tree")
-        :desc "visualize undo-tree" "v" #'undo-tree-visualize
-        :desc "save undo-tree history" "s" #'undo-tree-save
-        :desc "load undo-tree history" "l" #'undo-tree-save
+       ;; Map undo-tree
+       (:prefix ("U" . "undo-tree")
+         :desc "visualize undo-tree" "v" #'undo-tree-visualize
+         :desc "save undo-tree history" "s" #'undo-tree-save
+         :desc "load undo-tree history" "l" #'undo-tree-save
+       )
+
+       ;; Sql mode keymaps
+       (:prefix ("d" . "sql-mode")
+         :desc "connect with known config" "d" #'sql-connect
+         :desc "start postgres proc" "c" #'sql-postgres
+         :desc "send region" "r" #'sql-send-region
+         :desc "send buffer" "b" #'sql-send-buffer
+         :desc "send current paragraph" "p" #'sql-send-paragraph
+         :desc "set sql process for current buffer" "s" #'sql-set-sqli-buffer
+       )
+
       )
+  '';
 
-      ;; Sql mode keymaps
-      (:prefix ("d" . "sql-mode")
-        :desc "connect with known config" "d" #'sql-connect
-        :desc "start postgres proc" "c" #'sql-postgres
-        :desc "send region" "r" #'sql-send-region
-        :desc "send buffer" "b" #'sql-send-buffer
-        :desc "send current paragraph" "p" #'sql-send-paragraph
-        :desc "set sql process for current buffer" "s" #'sql-set-sqli-buffer
-      )
-
-     )
-   '';
-
-   config = ''
+  config = ''
     ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
     ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -92,6 +93,8 @@
 
     ;; default to postgres in sql-mode
     (with-eval-after-load "sql" (sql-set-product 'postgres))
+
+    (setq tramp-remote-shell "/bin/bash")
 
     ;; Some functionality uses this to identify you, e.g. GPG configuration, email
     ;; clients, file templates and snippets.
@@ -145,6 +148,4 @@
 
     ${keybindings}
   '';
-in {
-    cfg = config;
-}
+in { cfg = config; }

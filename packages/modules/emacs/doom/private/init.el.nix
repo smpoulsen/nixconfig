@@ -1,4 +1,5 @@
-{ options, ... }: let
+{ options, ... }:
+let
 
   projectRoot = "~/code";
 
@@ -8,6 +9,7 @@
     ;; projectile config
     (projectile-add-known-project "~/nixconfig")
     (projectile-add-known-project "${projectRoot}/dotfiles")
+    (setq projectile-mode-line "Projectile")
 
     (use-package! undo-tree
                   :config
@@ -18,6 +20,4 @@
 
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   '';
-in {
-  cfg = initFile;
-}
+in { cfg = initFile; }

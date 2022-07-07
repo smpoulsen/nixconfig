@@ -70,6 +70,8 @@
         #  epkgs.vterm
         # ]))
 
+        nixfmt
+
         ## Doom dependencies
         git
         (ripgrep.override {withPCRE2 = true;})
@@ -104,6 +106,5 @@
         # unstable.fava  # HACK Momentarily broken on nixos-unstable
         # :lang rust
         rustfmt
-        # unstable.rust-analyzer
         ];
 }

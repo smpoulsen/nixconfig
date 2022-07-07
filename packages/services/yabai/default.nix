@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   services.yabai = {
-    enable = true;
+    enable = false;
     package = pkgs.yabai;
     config = {
       mouse_follows_focus = "off";
@@ -42,7 +42,7 @@
   };
 
   services.skhd = {
-    enable = true;
+    enable = false;
     package = pkgs.skhd;
     skhdConfig = builtins.readFile ./config/skhdrc;
   };
