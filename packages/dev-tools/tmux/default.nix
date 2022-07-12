@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.tmux;
+  cfg = config.sylvie.packages.dev-tools.tmux;
 
   tmuxConf = ''
     # bind 'C-a C-a' to type 'C-a'
@@ -40,7 +40,7 @@ let
     # set-window-option -g status-right-bg white
 
     set-window-option -g window-status-format " #I: #W "
-    set-window-option -g window-status-current-format " #I: #W "
+    set-window-option -g window-status-current-format "#[fg=#b48ead] #I: #W "
 
     #set-window-option -g window-status-current-fg "#b48ead"
     #set-window-option -g window-status-current-bg black
@@ -54,7 +54,7 @@ let
   '';
 
 in {
-  options.sylvie.packages.tmux = {
+  options.sylvie.packages.dev-tools.tmux = {
     enable = mkEnableOption "tmux config";
 
     leader = mkOption {

@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.emacs;
+  cfg = config.sylvie.packages.editors.emacs;
   isMac = pkgs.system == "x86_64-darwin";
 
   doomConfig = (import doom/doom-config { inherit options; });
@@ -31,7 +31,7 @@ let
     '';
 
 in {
-  options.sylvie.packages.emacs = {
+  options.sylvie.packages.editors.emacs = {
     enable = mkEnableOption "emacs config";
   };
 

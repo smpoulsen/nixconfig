@@ -9,6 +9,7 @@ in {
   imports = [
     ./dev-tools
     ./editors
+    ./languages
     ./misc
     ./shells
     ./terminals
@@ -17,16 +18,18 @@ in {
 
   config = {
     sylvie.packages = {
-      emacs.enable = true;
-      fish.enable = true;
-      git.enable = true;
-      neovim.enable = true;
-      tmux.enable = true;
+      editors = {
+        emacs.enable = true;
+        neovim.enable = true;
       vim.enable = false;
+      };
 
-      # NixOS specific defaults
-      alacritty.enable = if isNixOS then true else false;
-      gpg.enable = if isNixOS then true else false;
+      shells.fish.enable = true;
+
+      dev-tools = {
+        git.enable = true;
+        tmux.enable = true;
+      };
     };
   };
 }

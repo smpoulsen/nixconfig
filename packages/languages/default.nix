@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./alacritty
-    ./kitty
+    ./ruby
   ];
 }

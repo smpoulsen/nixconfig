@@ -1,0 +1,33 @@
+[/]
+
+live-alt-tab=['<Alt>Tab']
+live-alt-tab-backward=['<Shift><Alt>Tab']
+
+switch-next=['<Super>Tab']
+switch-previous=['<Shift><Super>Tab']
+
+switch-up=['<Super><Ctrl>k']
+switch-down=['<Super><Ctrl>j']
+switch-left=['<Super><Ctrl>h']
+switch-right=['<Super><Ctrl>l']
+
+move-up=['<Shift><Super>k', '<Alt><Ctrl>k']
+move-down=['<Shift><Super>j', '<Alt><Ctrl>j']
+move-left=['<Primary><Alt>h', '<Alt><Shift>comma', '<Super><Shift>Left']
+move-right=['<Primary><Alt>l', '<Alt><Shift>period', '<Super><Shift>Right']
+
+slurp-in=['<Super><Ctrl>i']
+barf-out=['<Super><Ctrl>o']
+
+switch-up-workspace=['<Super><Ctrl>m' ]
+switch-down-workspace=['<Super><Ctrl>Comma']
+
+move-up-workspace=['<Alt><Ctrl>m']
+move-down-workspace=['<Alt><Ctrl>Comma']
+
+move-monitor-left=['<Primary><Alt><Super>h']
+move-monitor-right=['<Primary><Alt><Super>l']
+switch-monitor-left=['<Alt><Super>h']
+switch-monitor-right=['<Alt><Super>l']
+
+take-window=['<Shift><Alt>t', '<Alt><Super>t']

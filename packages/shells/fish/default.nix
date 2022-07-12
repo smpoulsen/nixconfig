@@ -2,15 +2,24 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.fish;
+  cfg = config.sylvie.packages.shells.fish;
 
   fish_config = builtins.readFile ./config/config.fish;
+  linux_nix_path = if pkgs.system == "x86_64-linux"
+    then ''set -g NIX_PATH /home/spoulsen/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels:/home/spoulsen/.nix-defexpr/channels\n''
+    else '''';
+
+  gpg_auth_config = ''
+                    set -x GPG_TTY (tty)
+                    set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+                    gpgconf --launch gpg-agent
+                    '';
+
 
   # see https://github.com/LnL7/nix-darwin/issues/122
   environment.etc."fish/nixos-env-preinit.fish".text = lib.mkMerge [
     (lib.mkBefore ''
       set -g __nixos_path_original $PATH
-      set -g __nixos_nix_path_original $NIX_PATH
     '')
     (lib.mkAfter ''
       function __nixos_path_fix -d "fix PATH value"
@@ -21,15 +30,7 @@ let
         end
       end
 
-      set -l nix_result (string replace '$HOME' "$HOME" $__nixos_nix_path_original)
-      for elt in $NIX_PATH
-        if not contains -- $elt $nix_result
-          set -a nix_result $elt
-        end
-      end
-
       set -g PATH $result
-      set -g NIX_PATH $nix_result
       fenv source /run/current-system/etc/zshenv > /dev/null
       fish_config
       end
@@ -40,13 +41,36 @@ let
 
 
 in {
-  options.sylvie.packages.fish = {
+  options.sylvie.packages.shells.fish = {
     enable = mkEnableOption "fish config";
+
+    set-gpg-auth = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable gpg for ssh auth";
+    };
   };
 
   config = mkIf cfg.enable {
+
+    # xdg = {
+    #   enable = true;
+    #   config = {
+    #     "fish/config.fish" = {
+    #       text = "${metadata}";
+    #     };
+    #     "paperwm/user.js" = {
+    #       text = "${user_conf}";
+    #     };
+    #   };
+    # };
     programs.fish = {
-      shellInit = fish_config;
+      enable = true;
+      shellInit = fish_config + linux_nix_path + (
+        if cfg.set-gpg-auth
+        then fish_config + gpg_auth_config
+        else fish_config
+      );
 
       plugins = [
         {

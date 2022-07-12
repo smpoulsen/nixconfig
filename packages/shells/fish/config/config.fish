@@ -30,9 +30,9 @@ set -xg TZ "America/New_York"
 set -xg iCloudDrive "~/Library/Mobile\ Documents/com\~apple\~CloudDocs/"
 
 # Enable gpg auth for ssh
-#set -x GPG_TTY (tty)
-#set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-#gpgconf --launch gpg-agent
+set -x GPG_TTY (tty)
+set -xg SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 if functions -q load_nix
     load_nix

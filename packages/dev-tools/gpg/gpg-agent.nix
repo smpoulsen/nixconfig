@@ -2,10 +2,10 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.gpgAgent;
+  cfg = config.sylvie.packages.dev-tools.gpgAgent;
 
 in {
-  options.sylvie.packages.gpgAgent = {
+  options.sylvie.packages.dev-tools.gpgAgent = {
     enable = mkEnableOption "gpgAgent config";
   };
 

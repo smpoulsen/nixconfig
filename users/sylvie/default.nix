@@ -13,7 +13,6 @@ let
 
     # Dev
     cloc
-    docker
     fswatch
     nox
     graphviz
@@ -21,7 +20,7 @@ let
     ispell
     jq
     tmux
-    vagrant
+    #vagrant
     yq
 
     # Fonts
@@ -43,9 +42,11 @@ let
     htop
     libfido2
     nmap
-    openssh
+    #openssh
+    openvpn
     ripgrep
     stow
+    xclip
     yubikey-manager
   ];
 
@@ -106,7 +107,7 @@ in {
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
 
-    programs.fish.enable = true;
+    #programs.fish.enable = true;
 
     programs.direnv = {
       enable = true;
@@ -124,7 +125,7 @@ in {
         TERMINAL = cfg.terminal;
       };
 
-      stateVersion = "22.05";
+      #stateVersion = "22.05";
       packages = homePackages ++ cfg.extraPackages;
     };
 

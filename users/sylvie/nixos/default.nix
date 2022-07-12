@@ -29,9 +29,7 @@ in {
     ];
 
     home-manager.users.sylvie = { config, pkgs, ... }: {
-      imports = [
-        ../../../packages/nixos.nix
-      ];
+      imports = [];
     };
   };
 }

@@ -2,7 +2,7 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.git;
+  cfg = config.sylvie.packages.dev-tools.git;
   gpgHelper = cfg.helper == "gpg";
 
   netrcChange = ''
@@ -22,7 +22,7 @@ let
   '';
 
 in {
-  options.sylvie.packages.git = {
+  options.sylvie.packages.dev-tools.git = {
     enable = mkEnableOption "Git config";
 
     email = mkOption {

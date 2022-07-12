@@ -2,11 +2,11 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.neovim;
+  cfg = config.sylvie.packages.editors.neovim;
 
 in {
-  options.sylvie.packages.neovim = {
-    enable = mkEnableOption "Vim config";
+  options.sylvie.packages.editors.neovim = {
+    enable = mkEnableOption "nvim config";
   };
 
   config = mkIf cfg.enable {

@@ -3,5 +3,6 @@
     ./git
     ./gpg
     ./tmux
+    ./virtualization
   ];
 }

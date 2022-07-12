@@ -2,10 +2,10 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.vim;
+  cfg = config.sylvie.packages.editors.vim;
 
 in {
-  options.sylvie.packages.vim = {
+  options.sylvie.packages.editors.vim = {
     enable = mkEnableOption "Vim config";
   };
 

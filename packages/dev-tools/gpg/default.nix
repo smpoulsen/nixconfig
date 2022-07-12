@@ -2,14 +2,14 @@
 with lib;
 
 let
-  cfg = config.sylvie.packages.gpg;
+  cfg = config.sylvie.packages.dev-tools.gpg;
 
 in {
   imports = [
     ./gpg-agent.nix
   ];
 
-  options.sylvie.packages.gpg = {
+  options.sylvie.packages.dev-tools.gpg = {
     enable = mkEnableOption "GPG config";
 
     withAgent = mkOption {
@@ -19,7 +19,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    sylvie.packages.gpgAgent.enable = cfg.withAgent;
+    sylvie.packages.dev-tools.gpgAgent.enable = cfg.withAgent;
     programs.gpg = {
       enable = true;
       # Needed to fix yubikey recognition w/ gpg 2.3

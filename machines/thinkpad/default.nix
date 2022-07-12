@@ -17,20 +17,33 @@
   };
 
   sylvie.packages = {
-    git = {
-      email = "sylvie.poulsen@philips.com";
-      gpg.sign = false;
+    dev-tools = {
+      git = {
+        gpg.sign = false;
+      };
+
+      gpg.enable = false;
+
+      virtualization.docker-compose.enable = true;
     };
 
-    window-managers.gnome = {
-      enable = true;
-      paperWm = true;
+    languages = {
+      ruby.enable = true;
     };
 
-    communication = {
-      teams.enable = true;
-      slack.enable = true;
+    misc = {
+      gestures.enable = true;
+      browsers.chromium.enable = true;
+      communication = {
+        obs.enable = true;
+        teams.enable = true;
+        slack.enable = true;
+        thunderbird.enable = true;
+      };
     };
+
+    window-managers.gnome.paperwm.enable = true;
+    #terminals.kitty.enable = true;
   };
 
   xdg.enable = true;

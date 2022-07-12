@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./browsers
     ./communication
+    ./gestures
   ];
 }
