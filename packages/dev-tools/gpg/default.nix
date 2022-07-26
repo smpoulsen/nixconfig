@@ -20,6 +20,11 @@ in {
 
   config = mkIf cfg.enable {
     sylvie.packages.dev-tools.gpgAgent.enable = cfg.withAgent;
+
+    home.packages = (if cfg.enable then [
+      pkgs.gpg
+    ] else []);
+
     programs.gpg = {
       enable = true;
       # Needed to fix yubikey recognition w/ gpg 2.3

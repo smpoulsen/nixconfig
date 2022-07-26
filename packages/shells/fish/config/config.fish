@@ -20,7 +20,12 @@
 
 # Pure theme configuration
 # REF: https://github.com/rafaelrinaldi/pure#configuration
-set pure_symbol_prompt λ
+if test $TERM = 'dumb'
+    # Tramp workaround
+    set pure_symbol_prompt "\$ "
+  else
+    set pure_symbol_prompt λ
+end
 
 # Erlang shell history
 set -gx ERL_AFLAGS "-kernel shell_history enabled"

@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./alacritty
-    ./kitty
-  ];
+  imports = [ ./alacritty ./kitty ./libvterm ];
 }

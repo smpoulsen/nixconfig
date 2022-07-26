@@ -4,10 +4,7 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
 
-  imports = [
-    ../../users/sylvie
-    ../../packages
-  ];
+  imports = [ ../../users/sylvie ../../packages ];
 
   users.sylvie = {
     enable = true;
@@ -19,6 +16,7 @@
   sylvie.packages = {
     dev-tools = {
       git = {
+        email = "sylvie.poulsen@philips.com";
         gpg.sign = false;
       };
 
@@ -27,9 +25,7 @@
       virtualization.docker-compose.enable = true;
     };
 
-    languages = {
-      ruby.enable = true;
-    };
+    languages = { ruby.enable = true; };
 
     misc = {
       gestures.enable = true;
@@ -44,6 +40,7 @@
 
     window-managers.gnome.paperwm.enable = true;
     #terminals.kitty.enable = true;
+    terminals.libvterm.enable = true;
   };
 
   xdg.enable = true;
