@@ -30,11 +30,11 @@ in {
           recursive = true;
         };
 
-        homebrew = {
-          source = ./config/homebrew;
-          target = ".config/homebrew";
-          recursive = true;
-        };
+        #homebrew = {
+        #source = ./config/homebrew;
+        #target = ".config/homebrew";
+        #recursive = true;
+        #};
       };
     };
 
@@ -42,7 +42,7 @@ in {
       # Apps
 
       # Dev
-      postgresql_14
+      #postgresql_14
 
       # Fonts
       cascadia-code
@@ -54,7 +54,7 @@ in {
       # iterm2
       # amethyst
       pinentry_mac
-      skhd
+      #skhd
       #yabai
     ];
   };
